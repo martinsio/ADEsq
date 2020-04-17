@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servidor-web
+  labels:
+    app: servidor-web
+spec:
+  selector:
+    matchLabels:
+      app: servidor-web
+
+    spec:
+      containers:
+        - image: php:7.2-apache
+          name: apache-php
+          ports:
+            - containerPort:80
+            name: apache-php

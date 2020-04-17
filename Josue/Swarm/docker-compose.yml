@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  apache:
+    image: php:7.4-apache
+    volumes:
+      - ./src:/var/www/html
+    ports:
+    networks:
+      - backend
+      - frontend
+    deploy:
+      replicas: 1
+
+  cache_server: 
+    deploy:
+      replicas: 1
+    image: varnish:6.4
+    volumes:
+      - ./default.vcl:/etc/varnish/default.vcl
+    ports:
+      - 80:80
+    networks:
+      - frontend
+
+  mariadb:
+    deploy:
+      replicas: 1
+    image: toughiq/mariadb-cluster:2.1
+    environment:
+      - DB_SERVICE_NAME=galera
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=drupaldb
+      - MYSQL_USER=dbuser
+      - MYSQL_PASSWORD=dbpassword
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend
+    driver: overlay
+  frontend:
+    name: frontend
+    driver: overlay
