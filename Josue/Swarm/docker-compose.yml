@@ -4,14 +4,13 @@ services:
     image: php:7.4-apache
     volumes:
       - ./src:/var/www/html
-    ports:
     networks:
       - backend
       - frontend
     deploy:
       replicas: 1
 
-  cache_server: 
+  cache_server:
     deploy:
       replicas: 1
     image: varnish:6.4
@@ -34,6 +33,7 @@ services:
       - MYSQL_PASSWORD=dbpassword
     networks:
       - backend
+
 
 networks:
   backend:
