@@ -1,0 +1,21 @@
+Docker swarm: es un gestor de cluster integrado con docker
+
+Funcionamiento:
+
+En un nodo que queramos iniciamos el cluster con el comando 'docker swarm init'. Esto devuelve un comando con un token que insertaremos en los equipos que queramos añadir al cluster.
+
+Existen 2 tipos de nodos en el cluster, son los manager y los worker, los worker hacen lo que piden los manager. En el manager también se pueden ejecutar las tareas que pide el manager. Pueden haber tantos manager como worker se requieran.
+
+Para levantar servicios en cluster, hacemos un 'docker-compose.yml' o con cualquier otro nombre. En el especificamos los servicios que correran en el como si un docker-compose normal se tratar con la diferencia de que por defecto el docker swarm utiliza la network en modo 'overlay' por defecto (esto es para que los contenedores se puedan conectar unos a otros sin necesidad de hacer links) y que también es necesario especificar algunos paramétros de cluster como por ejemplo las replicas que tendrán los servicios o donde se correra el servicio (con servicio me refiero al contenedor que lleva el servicio).
+
+Pasos para desplegarlo:
+
+Nodo master: $ docker swarm init advertise-addr <ip>
+                output:
+                docker swarm join token <token>
+
+Nodos workers: $ docker swarm join token <token>
+
+#desplegar el docker compose con la información para desplegar los contenedores
+Nodo master: $ docker stack deploy -c <archivo.yml> <nombre para el deploy>
+
