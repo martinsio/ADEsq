@@ -1,20 +1,19 @@
+version: "3.8"
 services:
   apache:
     image: php:7.4-apache
     volumes:
-      - ./src:/var/www/html
+      - web-src:/var/www/html
     networks:
       - backend
       - frontend
     deploy:
       replicas: 1
 
-  cache_server:
+  cache_server: 
     deploy:
       replicas: 1
-    image: varnish:6.4
-    volumes:
-      - ./default.vcl:/etc/varnish/default.vcl
+    image: adesq/varnish:6.4
     ports:
       - 80:80
     networks:
@@ -23,6 +22,8 @@ services:
   mariadb-cluster:
     deploy:
       replicas: 1
+      placement:
+        constraints: [node.hostname == basededatos]
     image: toughiq/mariadb-cluster:2.1
     environment:
       - DB_SERVICE_NAME=mariadb-cluster
@@ -32,10 +33,14 @@ services:
       - MYSQL_PASSWORD=3NKR1PT3Dp4$$w0rd
     networks:
       - backend
-
+    volumes:
+      - mysql-data:/var/lib/mysql
+   
   lb_mariadb:
     deploy:
       replicas: 1
+      placement:
+        constraints: [node.hostname == basededatos]
     image: toughiq/maxscale:1.4.5
     ports:
       - 3306:3306
@@ -45,6 +50,19 @@ services:
     networks:
       - backend
 
+  portainer:
+    image: portainer/portainer
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - backend
+
+volumes:
+  web-src:
+  mysql-data:
+
 networks:
   backend:
     name: backend
@@ -52,4 +70,3 @@ networks:
   frontend:
     name: frontend
     driver: overlay
-
