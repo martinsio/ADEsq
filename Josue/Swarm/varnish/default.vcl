@@ -1,6 +1,6 @@
 vcl 4.0;
 
 backend default {
-  .host = "apache:80";
+  .host = "127.0.0.1:8080";
 }
  
