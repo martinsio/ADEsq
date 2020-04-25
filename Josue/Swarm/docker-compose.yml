@@ -1,22 +1,18 @@
 version: "3.8"
 services:
   apache:
-    deploy:
-      replicas: 1
     image: adesq/php-apache
     volumes:
       - web-src:/var/www/localhost/htdocs
     networks:
-      - backend
       - frontend
+      - backend
     ports:
       - "8080:8080"
-      
-  varnish: 
-    depends_on:
-      - apache
     deploy:
       replicas: 1
+      
+  varnish:
     image: adesq/varnish:6.4
     ports:
       - target: 80
@@ -26,12 +22,11 @@ services:
     networks:
       - frontend
       - backend
-
-  mariadb:
     deploy:
       replicas: 1
-      placement:
-        constraints: [node.hostname == basededatos]
+    
+
+  mariadb:
     image: toughiq/mariadb-cluster:2.1
     environment:
       - DB_SERVICE_NAME=mariadb-cluster
@@ -43,12 +38,12 @@ services:
       - backend
     volumes:
       - mysql-data:/var/lib/mysql
-   
-  lb_mariadb:
     deploy:
       replicas: 1
       placement:
         constraints: [node.hostname == basededatos]
+   
+  lb_mariadb:
     image: toughiq/maxscale:1.4.5
     ports:
       - target: 3306
@@ -60,6 +55,10 @@ services:
       - ENABLE_ROOT_USER=1
     networks:
       - backend
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == basededatos]
 
 volumes:
   web-src:
