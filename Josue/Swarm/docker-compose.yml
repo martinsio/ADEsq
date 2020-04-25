@@ -16,9 +16,9 @@ services:
     image: adesq/varnish:6.4
     ports:
       - target: 80
-      published: 80
-      protocol: tcp
-      mode: ingress
+        published: 80
+        protocol: tcp
+        mode: ingress
 
     networks:
       - frontend
@@ -48,9 +48,9 @@ services:
     image: toughiq/maxscale:1.4.5
     ports:
       - target: 3306
-      published: 3306
-      protocol: tcp
-      mode: ingress
+        published: 3306
+        protocol: tcp
+        mode: ingress
     environment:
       - DB_SERVICE_NAME=mariadb-cluster
       - ENABLE_ROOT_USER=1
