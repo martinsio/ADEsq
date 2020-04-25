@@ -1,21 +1,47 @@
-Docker swarm: es un gestor de cluster integrado con docker
+# Docker Swarm
 
-Funcionamiento:
+Swarm es el gestor de cluster integrado con Docker engine.
 
-En un nodo que queramos iniciamos el cluster con el comando 'docker swarm init'. Esto devuelve un comando con un token que insertaremos en los equipos que queramos añadir al cluster.
+### Importante:
+Para poder utilizar el routing mesh en docker es necesario crear unas reglas para permitir los puertos que utiliza docker swarm.
+- 2377/TCP: es para la comunicación del administrador del swarm.
+- 7946/TCP+UDP: para descubrimiento de red de contenedores
+- 4789/UDP: Para la red ingress que utiliza docker swarm
+- 50: solo es necesario si habilita la seguridad en una red superpuesta
+```
+iptables -A INPUT -p tcp -m tcp --dport 2377 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 7946 -j ACCEPT
+iptables -A INPUT -p udp -m udp --dport 7946 -j ACCEPT
+iptables -A INPUT -p tcp -m udp --dport 4789 -j ACCEPT
+iptables -A INPUT -p 50 -j ACCEPT
+```
+He añadido en los servidores en /etc/hosts:
+```
+<ip> manager01
+<ip> worker01
+```
+Luego iniciamos el cluster en el nodo manager01:
+```
+docker swarm init --advertise-addr <ip>
+```
+En los otros nodos entramos al cluster haciendo:
+```
+docker swarm join --token <TOKEN>
+```
 
-Existen 2 tipos de nodos en el cluster, son los manager y los worker, los worker hacen lo que piden los manager. En el manager también se pueden ejecutar las tareas que pide el manager. Pueden haber tantos manager como worker se requieran.
+### Bibliografía
 
-Para levantar servicios en cluster, hacemos un 'docker-compose.yml' o con cualquier otro nombre. En el especificamos los servicios que correran en el como si un docker-compose normal se tratar con la diferencia de que por defecto el docker swarm utiliza la network en modo 'overlay' por defecto (esto es para que los contenedores se puedan conectar unos a otros sin necesidad de hacer links) y que también es necesario especificar algunos paramétros de cluster como por ejemplo las replicas que tendrán los servicios o donde se correra el servicio (con servicio me refiero al contenedor que lleva el servicio).
+Caracteristicas de swarm: https://docs.docker.com/engine/swarm/
 
-Pasos para desplegarlo:
+Como trabajan los nodos: https://docs.docker.com/engine/swarm/how-swarm-mode-works/nodes/
 
-Nodo master: $ docker swarm init advertise-addr <ip>
-                output:
-                docker swarm join token <token>
+Balanceador de swarm:
+https://docs.docker.com/engine/swarm/ingress
 
-Nodos workers: $ docker swarm join token <token>
-
-#desplegar el docker compose con la información para desplegar los contenedores
-Nodo master: $ docker stack deploy -c <archivo.yml> <nombre para el deploy>
+https://docs.docker.com/engine/swarm/stack-deploy/
+https://github.com/traskiloner/drupal-microservices/blob/master/swarm-compose.yml 
+https://hub.docker.com/_/varnish
+https://github.com/webkul/magento2-varnish-docker-compose
+https://github.com/fiunchinho/http-caching-training/blob/master/varnish/docker-compose.yml
+https://serverfault.com/questions/986273/docker-swarm-routing-mesh-times-out
 

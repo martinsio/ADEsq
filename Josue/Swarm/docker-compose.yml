@@ -15,7 +15,11 @@ services:
       replicas: 1
     image: adesq/varnish:6.4
     ports:
-      - 80:80
+      - target: 80
+      published: 80
+      protocol: tcp
+      mode: ingress
+
     networks:
       - frontend
 
@@ -43,19 +47,13 @@ services:
         constraints: [node.hostname == basededatos]
     image: toughiq/maxscale:1.4.5
     ports:
-      - 3306:3306
+      - target: 3306
+      published: 3306
+      protocol: tcp
+      mode: ingress
     environment:
       - DB_SERVICE_NAME=mariadb-cluster
       - ENABLE_ROOT_USER=1
-    networks:
-      - backend
-
-  portainer:
-    image: portainer/portainer
-    ports:
-      - 9000:9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - backend
 
