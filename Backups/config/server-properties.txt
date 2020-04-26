@@ -3,7 +3,7 @@
 ubuntu
 
 # IP del servidor:
-54.172.226.29
+XXX.XXX.XXX.XXX
 
 # Ruta de orígen (carpeta raíz):
 cosas
