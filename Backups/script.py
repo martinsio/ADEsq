@@ -6,19 +6,19 @@ import datetime
 
 def time():
     x = datetime.datetime.now()
-    value = ("%s-%s-%s %s;%s" % (x.day, x.month, x.year, x.hour, x.second))
+    value = ("%s-%s-%s-%s-%s" % (x.day, x.month, x.year, x.hour, x.second))
     return value
 
 
 def copia(time):
     backup = zipfile.ZipFile(rutabackups+cfile, 'w') # Abrimos el fichero ZIP en modo escritura
-    #backup.setpassword(b"password")# Establecemos contraseña en formato Bytes
+    # backup.setpassword(b"password")# Establecemos contraseña en formato Bytes
 
     for folder, subfolders, files in os.walk('cosas'):
         for file in files:
             backup.write(os.path.join(folder, file), os.path.relpath(os.path.join(folder, file), 'cosas'), compress_type=zipfile.ZIP_DEFLATED)
 
-    backup.close() #Cerramos el fichero comprimido.
+    backup.close()# Cerramos el fichero comprimido.
 
 
 def hash(archivo):
@@ -31,17 +31,28 @@ def hash(archivo):
     return hashmd5.hexdigest(), hashsha.hexdigest()  # Devolvemos el resultado
 
 
-def enviar():
-    os.system("scp bsckups/fichero.zip USER@SERVER:PATH")
-    #falta añadir el login mediante claveosboxes.org
+def enviar(archivo):
+    os.system("scp -i Certs/svBackups.pem "+archivo+" "+usuario+"@"+ip+":/home/ubuntu/")
+    os.system("rm -r "+rutabackups+"*.zip")
 
+# Datos del servidor de backups
+usuario = "ubuntu"
+ip = "54.172.226.29"
 
+#
+
+# Directorio de backups enlazado
 rutabackups = 'backups/'
-cfile=(time()+'.zip') #Generamos el nombre del fichero comprimido.
 
+# Generamos el nombre del fichero comprimido.
+cfile=(time()+'.zip')
+
+
+# Llamadas
 copia(cfile)
+
 md5,sha = hash(rutabackups+cfile)
-
-
 print('El hash MD5 es: ', md5)
 print('El hash SHA256 es: ', sha)
+
+enviar(rutabackups+cfile)
