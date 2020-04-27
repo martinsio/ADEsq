@@ -12,7 +12,7 @@ Para poder utilizar el routing mesh en docker es necesario crear unas reglas par
 iptables -A INPUT -p tcp -m tcp --dport 2377 -j ACCEPT
 iptables -A INPUT -p tcp -m tcp --dport 7946 -j ACCEPT
 iptables -A INPUT -p udp -m udp --dport 7946 -j ACCEPT
-iptables -A INPUT -p tcp -m udp --dport 4789 -j ACCEPT
+iptables -A INPUT -p udp -m udp --dport 4789 -j ACCEPT
 iptables -A INPUT -p 50 -j ACCEPT
 ```
 He añadido en los servidores en /etc/hosts:
@@ -26,7 +26,7 @@ docker swarm init --advertise-addr <ip>
 ```
 En los otros nodos entramos al cluster haciendo:
 ```
-docker swarm join --token <TOKEN>
+docker swarm join --token <TOKEN> --advertise-addr <ip>
 ```
 
 ### Bibliografía
@@ -37,11 +37,3 @@ Como trabajan los nodos: https://docs.docker.com/engine/swarm/how-swarm-mode-wor
 
 Balanceador de swarm:
 https://docs.docker.com/engine/swarm/ingress
-
-https://docs.docker.com/engine/swarm/stack-deploy/
-https://github.com/traskiloner/drupal-microservices/blob/master/swarm-compose.yml 
-https://hub.docker.com/_/varnish
-https://github.com/webkul/magento2-varnish-docker-compose
-https://github.com/fiunchinho/http-caching-training/blob/master/varnish/docker-compose.yml
-https://serverfault.com/questions/986273/docker-swarm-routing-mesh-times-out
-
