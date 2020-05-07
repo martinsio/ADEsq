@@ -12,22 +12,35 @@ Luego iniciamos el cluster en el nodo manager01:
 ```
 docker swarm init --advertise-addr <ip>
 ```
-En los otros nodos entramos al cluster haciendo:
+En los otros nodos hacemos este comando para entrar al cluster:
 ```
 docker swarm join --token <TOKEN> --advertise-addr <ip>
 ```
+
+Para hacer desplogar la aplicación:
+```
+docker stack deploy -c docker-compose.yml <nombre del stack>
+```
+
+Para ver los servicios:
+```
+docker service ls
+```
+
 
 # Monitoreo
 
 * Netdata
 
   Ofrece una interfaz web para poder ver el tráfico y los recursos de los contenedores. Para iniciarlo basta con copiar el docker-compose de su repositorio de Docker Hub.
-
+  
+  ![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/Monitoreo/Netdata/netdata.png)
 
 * Lazydocker
   
   Esta herramienta al contrario que la anterior ofrece una interfaz en la terminal para monitorear los contenedores, para iniciarlo basta con ir a repositorio de Github o Docker Hub.
 
+  ![alt text](https://gitlab.com/adesq/voto/-/raw/c76d49935b9e3f21b95b1d1f4433d8f3911afe8b/Infraestructura/Monitoreo/Lazydocker/lazydocker.png)
 
 
 Para aumentar la organización los contenedores los iniciamos por docker-compose y Los ficheros se encuentran separados del 'docker-compose.yml' de servicios para separar los servicios de monitoreo y servicios de la aplicación y poder gestionarlos mejor.
