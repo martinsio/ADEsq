@@ -26,7 +26,7 @@ Para ver los servicios:
 ```
 docker service ls
 ```
-
+![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/Servicios/docker-swarm-running.png)
 
 # Monitoreo
 
