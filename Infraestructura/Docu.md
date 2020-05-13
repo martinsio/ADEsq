@@ -2,7 +2,6 @@
 
 Swarm es el gestor de cluster integrado con Docker engine.
 
-
 He añadido en los servidores en /etc/hosts nombres para los equipos para poder tener facilidad a la hora de hacer pruebas:
 ```
 <ip> manager01
@@ -24,9 +23,10 @@ docker stack deploy -c docker-compose.yml <nombre del stack>
 
 Para ver los servicios:
 ```
-docker service ls
+docker service ls 
 ```
 ![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/Servicios/docker-swarm-running.png)
+
 
 # Monitoreo
 
@@ -43,7 +43,15 @@ docker service ls
   ![alt text](https://gitlab.com/adesq/voto/-/raw/c76d49935b9e3f21b95b1d1f4433d8f3911afe8b/Infraestructura/Monitoreo/Lazydocker/lazydocker.png)
 
 
-Para aumentar la organización los contenedores los iniciamos por docker-compose y Los ficheros se encuentran separados del 'docker-compose.yml' de servicios para separar los servicios de monitoreo y servicios de la aplicación y poder gestionarlos mejor.
+Para aumentar la organización los contenedores los iniciamos por docker-compose y los ficheros se encuentran separados del 'docker-compose.yml' de servicios para separar los servicios de monitoreo y servicios de la aplicación y poder gestionarlos mejor.
+
+# Escaner de vulnerabilidades en imagénes docker
+
+Hemos optado por una herramienta llamada 'trivy' que es un contenedor que se crea, analiza las vulnerabilidades de la imagen seleccionada, imprime el resultado y se elimima.
+
+```
+$ docker run --rm -v [YOUR_CACHE_DIR]:/root/.cache/ aquasec/trivy [YOUR_IMAGE_NAME]
+```
 
 
 # Bibliografía
@@ -87,3 +95,7 @@ Lazydocker:
 * https://github.com/jesseduffield/lazydocker
 
 Docker-compose: https://docs.docker.com/compose/compose-file/
+
+Trivy: 
+* https://www.youtube.com/watch?v=xV75Vh5SS7U
+* https://github.com/aquasecurity/trivy
