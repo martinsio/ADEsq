@@ -5,6 +5,7 @@ Hemos optado por una herramienta llamada 'trivy' que es un contenedor que se cre
 ```
 $ docker run --rm -v [YOUR_CACHE_DIR]:/root/.cache/ aquasec/trivy [YOUR_IMAGE_NAME]
 ```
+![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/Vulnerabilidades/trivy.png)
 
 # Bibliografía
 
