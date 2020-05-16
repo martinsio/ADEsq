@@ -3,40 +3,57 @@
 Swarm es el gestor de cluster integrado con Docker engine. Hemos elegido este orquestador para docker por la utilidad, facilidad e integración que tienen con docker. Docker swarm permite desplegar servicios en el cluster pero también permite desplegar más de un servicio en un stack (un yml donde se encuentran los servicios que se quieren desplegar con formato docker-compose).
 
 Instrucciones:
+<br>
 
 He añadido en los servidores en /etc/hosts nombres para los equipos para poder tener facilidad a la hora de hacer conectarnos a cada nodo:
 ```
 <ip> manager01
 <ip> worker01
 ```
+<br>
+
 Luego iniciamos el cluster en el nodo manager01:
+
 ```
-docker swarm init --advertise-addr <ip>
+$ docker swarm init --advertise-addr <ip>
 ```
+<br>
+
 En los otros nodos hacemos este comando para entrar al cluster:
 ```
-docker swarm join --token <TOKEN> --advertise-addr <ip>
+$ docker swarm join --token <TOKEN> --advertise-addr <ip>
 ```
+<br>
 
 Para hacer desplogar la aplicación:
 ```
-docker stack deploy -c docker-compose.yml <nombre del stack>
+$ docker stack deploy -c docker-compose.yml <nombre del stack>
 ```
+<br>
 
 Para ver los servicios:
 ```
-docker service ls 
+$ docker service ls 
 ```
 ![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/Servicios/docker-swarm-running.png)
 
+<br>
+
 Docker swarm tiene características interesantes que permiten escalar los servicios en el cluster.
 ```
-docker service scale <nombrestack>.apache
+$ docker service scale appvoting_varnish=2
 ```
+![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/scale.png)
+
+<br>
+
+Otra característica interesante del Docker swarm es el balanceador que tiene llamado 'routing mesh', que permite que en caso que un servicio no se encuentre en un nodo a través de la red de swarm conecta con el contenedor que tiene el servicio que se encuentra en otro nodo y devuelve el resultado.
+
+![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/ingress-routing-mesh.png)
 
 # Bibliografía
 
-Docker swarm: 
+Docker swarm:
 
 * Hacer deploy: https://docs.docker.com/get-started/swarm-deploy/
 
