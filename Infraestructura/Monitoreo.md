@@ -1,5 +1,11 @@
 # Monitoreo
 
+* Portainer
+
+  Portainer es una herramienta muy utilizada para administrar docker y docker swarm y en el cual se pueden ver de un modo gráfico todos la información de imágenes, contenedores, volumenes, etc.
+
+  ![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/Monitoreo/portainer/portainer.png)
+
 * Netdata
 
   Ofrece una interfaz web para poder ver el tráfico y los recursos de los contenedores. Para iniciarlo basta con copiar el docker-compose de su repositorio de Docker Hub.
@@ -12,8 +18,6 @@
 
   ![alt text](https://gitlab.com/adesq/voto/-/raw/c76d49935b9e3f21b95b1d1f4433d8f3911afe8b/Infraestructura/Monitoreo/Lazydocker/lazydocker.png)
 
-
-Para aumentar la organización los contenedores los iniciamos por docker-compose y los ficheros se encuentran separados del 'docker-compose.yml' de servicios para separar los servicios de monitoreo y servicios de la aplicación y poder gestionarlos mejor.
 
 # Bibliografía
 

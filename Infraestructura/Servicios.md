@@ -1,10 +1,22 @@
 # Servicios
 
 ## Apache y PHP
-Hemos creado una imagen de apache y php con alpine para alojar la página web.
+
+Hemos creado una imagen de alpine en la cual hemos instalado todos los paquetes para apache y php para alojar la página web.
+
 https://hub.docker.com/r/adesq/php-apache
 
-## 
+## Mariadb
+
+Hemos utilizado una imagen que estaba modificada para usar MariaDB es docker swarm y hemos creado una imagen a partir de ella para cargar nuestro fichero de configuración de mariadb para permitir el acceso remoto a al mariadb.
+
+https://hub.docker.com/r/adesq/mariadb
+
+## Varnish
+
+Hemos utilizado la imagen oficial de varnish para para implementarlo junto al apache y hemos creado la imagen para cargar el fichero de configuración de varnish para indicarle la ruta del apache.
+
+https://hub.docker.com/r/adesq/varnish
 
 # Bibliografía
 

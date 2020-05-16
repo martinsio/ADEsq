@@ -51,6 +51,10 @@ Otra característica interesante del Docker swarm es el balanceador que tiene ll
 
 ![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/ingress-routing-mesh.png)
 
+<br>
+
+Para aumentar la organización y eficiencia se separan los ficheros .yml para separar los servicios de las otras herramientas.
+
 # Bibliografía
 
 Docker swarm:
