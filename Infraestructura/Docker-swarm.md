@@ -43,13 +43,13 @@ Docker swarm tiene características interesantes que permiten escalar los servic
 ```
 $ docker service scale appvoting_varnish=2
 ```
-![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/scale.png)
+![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/Images/scale.png)
 
 <br>
 
 Otra característica interesante del Docker swarm es el balanceador que tiene llamado 'routing mesh', que permite que en caso que un servicio no se encuentre en un nodo a través de la red de swarm conecta con el contenedor que tiene el servicio que se encuentra en otro nodo y devuelve el resultado.
 
-![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/ingress-routing-mesh.png)
+![alt text](https://gitlab.com/adesq/voto/-/raw/master/Infraestructura/Images/ingress-routing-mesh.png)
 
 <br>
 
