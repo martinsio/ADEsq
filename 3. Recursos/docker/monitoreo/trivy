@@ -1,0 +1,1 @@
+docker run --rm -v [YOUR_CACHE_FOLDER]:/root/.cache/ aquasec/trivy [YOUR_IMAGE_NAME]
