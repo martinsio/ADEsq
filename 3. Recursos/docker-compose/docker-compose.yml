@@ -2,8 +2,6 @@ version: "3.8"
 services:
   apache:
     image: adesq/php-apache
-    volumes:
-      - web-src:/var/www/localhost/htdocs
     networks:
       - frontend
       - backend
@@ -31,10 +29,7 @@ services:
     image: adesq/mariadb
     environment:
       - DB_SERVICE_NAME=mariadb
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_DATABASE=appvoting
-      - MYSQL_USER=appvotingadmin
-      - MYSQL_PASSWORD=adminpassword
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/pwdroot
     networks:
       - backend
     ports:
@@ -45,6 +40,8 @@ services:
       replicas: 1
       placement:
         constraints: [node.hostname == basededatos]
+    secrets:
+      - pwdroot
 
 volumes:
   web-src:
@@ -57,3 +54,7 @@ networks:
   frontend:
     name: frontend
     driver: overlay
+ 
+secrets:
+  pwdroot:
+    external: true

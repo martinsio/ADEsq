@@ -1,0 +1,340 @@
+/* Globals */
+
+* {
+    font-family: 'Jost', sans-serif;
+}
+
+body{
+    background-color: #290331; 
+    background-image: linear-gradient(300deg, #5d096f, #062C44);
+    color:white;
+}
+
+h2{
+    font-size: 38px;
+}
+h3{
+    text-align: center;
+    margin:1em;
+}
+h4{
+    text-align: center;
+    margin:1em;
+}
+
+
+.btn-primary {
+    color:white;
+    border:0px;
+    border-radius: 25px;
+    background-color: #4b1057;
+    transition: 0.2s;
+    padding: 10px 15px;
+}
+
+.btn-primary:hover {
+    border:0px;
+    background-color: #1F2250;
+}
+.btn-primary:active {
+    border:0px!important;
+    background-color: #1F2250!important;
+}
+.btn-primary:focus {
+    border:0px;
+    background-color: #1F2250;
+}
+.btn-primary:visited {
+    border:0px;
+    background-color:unset;
+}
+
+.cookies{
+    margin:0em;
+    text-align: left;
+    padding-top: 0px;
+    padding-bottom: 5px;
+}
+
+.cookies-text{
+    text-align: justify;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/* Navbar */
+
+.navbar{
+    min-height:7vh;
+    background-color: rgba(97, 97, 97, 0.212)!important;
+    position: sticky;
+    top: 0;
+}
+.navbar-brand{
+    font-size: 24px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+.navbar-brand img{
+    width: 50px;
+    height: 50px;
+}
+.navbar-toggler-icon{
+    color:white;
+}
+.nav-item{
+    color:white!important;
+    font-size: 18px;
+    font-weight: 500;
+    padding:0px!important;
+    margin-top: 0px;
+    margin-bottom: 3px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.navbar-nav a:after {
+    display: block;
+    content: "";
+    border-bottom: 2px solid white;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+}
+  
+.navbar-nav a:hover:after {
+    transform: scaleX(1);
+}
+
+#navbarDropdownMenuLink{
+    color:white;
+    display: flex;
+    align-items: center;
+}
+nav .navbar-toggler{
+    margin-right: 15px!important;
+}
+.fa.fa-user-circle-o{ /* Icono de perfil usuario*/
+    margin-left: 10px;
+    font-size: 30px;
+}
+
+.dropdown-menu{
+    right: 0px;
+    left: initial;
+}
+
+
+.dropdown-menu.show{
+    background-color: rgba(97, 97, 97, 0.212);
+}
+
+.dropdown-menu.show a{
+    color: white;
+}
+
+.dropdown-menu.show a:hover{
+    background-color: rgba(1, 54, 141, 0.3);;
+}
+
+/* Tabla de datos de usuario*/
+table{
+    font-size: 18px;
+}
+td{
+    padding:2px 10px;
+}
+
+/* Layout */
+
+.container-fluid{
+    min-height: 93vh;
+}
+.container{
+    padding: 4em !important;
+    border-radius: 10px;
+    background-color: rgba(97, 97, 97, 0.212);
+}
+.encuestas{
+    display: flex;
+    flex-direction: column-reverse;
+    align-content: center;
+    align-items: center;
+}
+.encuestas a{
+    display: contents;
+}
+.titulo-encuesta-banner{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.encuesta{
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px;
+    background-color: #1F2250;
+    padding: 25px;
+    min-width: 250px;
+    width: 100%;
+    max-width: 700px;
+    transition: all 0.4s ease;
+}
+.encuesta:hover{
+    background-color: #4b1057;
+
+}
+
+.encuesta-titulo{
+    font-size: 20px;
+    font-weight: 600;
+    color:white;
+}
+.encuesta-fecha{
+    font-size: 14px;
+    font-weight: 400;
+    color:lightgray;
+}
+@media screen and (min-width: 1024px){
+    .encuesta{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .encuesta-titulo{
+        word-break: break-all;
+        margin: initial;
+    }
+    .encuesta-fecha{
+        margin-left: 15px;
+    }
+}
+
+.login, .registro, .create, .perfil, .votacion{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.login-titulo, .registro-titulo, .create-titulo, .votacion-titulo{
+    margin-bottom: 30px; 
+}
+.registro-form, .login-form, .create-form, .votacion-form{
+    display: flex;
+    flex-direction: column;
+}
+.votacion-form{
+    width: 50%;
+}
+@media screen and (max-width: 991px){
+    .votacion-form{
+        width: 100%;
+    }
+}
+.votacion-form input[type="radio"]{
+    display: none;
+}
+.radio{
+    display:flex;
+    flex-direction: column;
+}
+.votacion-form .radio label{
+    color:white;
+    display: inline-block;
+    position: relative;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background: rgba(97, 97, 97, 0.212);
+    font-size: 19px;
+    text-align: center;
+    word-break: break-word;
+}
+.votacion-form .radio label:hover{
+    background: rgba(0, 116, 217, 0.2);
+}
+.votacion-form .radio label::before{
+    content: "";
+}
+.votacion-form input[type="radio"]:checked + label{
+    padding: 5px 15px;
+    background: rgba(1, 54, 141, 0.5);
+    border-radius: 5px;
+    color: #fff;
+    font-size: 19px;
+}
+.votacion-form input[type="radio"]:checked + label:before{
+    display: none;
+}
+.create-form{
+    position: relative;
+}
+
+.registro-form .g-recaptcha, .login-form .g-recaptcha{
+    margin-top: 10px;
+}
+.registro-form p {
+    text-align: center;
+}
+input[type=submit]{
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+#add{
+    margin: 5px 0 15px 0;
+}
+input[type=text], input[type=email], input[type=password]{
+    border: 7px solid white;
+    border-radius: 25px;
+    width: 100%;
+    padding: 0 5px;
+}
+.create-input-respuesta{
+    display: flex;
+    align-items: center;
+}
+.btn.btn-danger.btn_remove{
+    border-radius: 64px;
+    padding: 5px 13px;
+    position: absolute;
+    right: -45px;
+}
+p {
+    word-break: break-word;
+}
+
+g[aria-labelledby="id-66-title"]{
+    display: none;
+}
+p.resultado-encuesta-vtotal{
+    font-size: 22px;
+    font-weight: 500;
+}
+
+#chartdiv{
+    width: 1200px;
+    margin: 50px 0 70px;
+}
+
+@media screen and (max-width: 480px){
+    #chartdiv{
+        height: 70px;
+    }
+}
+@media screen and (min-width: 600px){
+    #chartdiv{
+        height: 170px;
+    }
+}
+@media screen and (min-width: 770px){
+    #chartdiv{
+        height: 220px;
+    }
+}
+@media screen and (min-width: 1024px){
+    #chartdiv{
+        height: 280px;
+    }
+}
