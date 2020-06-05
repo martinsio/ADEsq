@@ -1,0 +1,60 @@
+version: "3.8"
+services:
+  apache:
+    image: adesq/php-apache
+    networks:
+      - frontend
+      - backend
+    ports:
+      - "8080:8080"
+    deploy:
+      replicas: 1
+
+  varnish:
+    depends_on:
+      - apache
+    image: adesq/varnish:6.4
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: ingress
+    networks:
+      - frontend
+      - backend
+    deploy:
+      replicas: 1
+
+  mariadb:
+    image: adesq/mariadb
+    environment:
+      - DB_SERVICE_NAME=mariadb
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/pwdroot
+    networks:
+      - backend
+    ports:
+      - "10200:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.hostname == basededatos]
+    secrets:
+      - pwdroot
+
+volumes:
+  web-src:
+  mysql-data:
+
+networks:
+  backend:
+    name: backend
+    driver: overlay
+  frontend:
+    name: frontend
+    driver: overlay
+ 
+secrets:
+  pwdroot:
+    external: true
