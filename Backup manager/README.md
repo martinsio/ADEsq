@@ -14,12 +14,12 @@ Dentro del directorio **/config** se pueden encontrar los siguientes elementos:
  - Fichero **/alerts/to.txt**: Contiene las direcciones de correo a las que se notifica cada vez que se realiza una copia de seguridad. Debe haber una dirección por línea.
  - Directorio **/Certs**: Contiene el certificado .pem del servidor destino. El nombre debe ser obligatoriamente *clave.pem*
  - Fichero **/creds/creds.txt**: Contiene los datos de acceso al servidor de correo que envía las notificaciones. Debe respetar el formato del fichero de ejemplo. 
-![enter image description here](https://i.ibb.co/0sB2NwQ/Captura-de-pantalla-2022-07-25-214238.png)
-En el ejemplo se encuentra preconfigurado gmail como servidor de correo.
+ *En el ejemplo se encuentra preconfigurado gmail como servidor de correo.*
  - Fichero **server-properties.txt**: Contiene datos sobre el servidor de origen y el de destino.  Ver el siguiente apartado para más información.
 
 ### server-properties.txt
 El fichero debe respetar el formato de ejemplo:
+
 ![server-properties-txt](https://i.ibb.co/Z1VyXQj/copia.png)
 
  - **Usuario:** Nombre de usuario que debe usar SCP en el servidor destino.
