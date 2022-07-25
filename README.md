@@ -1,12 +1,14 @@
 # ADESQ - Sistema de voto seguro
  Sistema para votaciones abiertas con infraestructura basada en docker y cloud.
+ 
+![](https://i.ibb.co/CnghcXY/Imagen1.png)
 
 # Miembros del equipo
  - Eduard Avellanet Reyes
  - Josue David Zambrano Perozo 
  - Pau Enjuanes Sumalla
  - Martín Justo Fernández
- 
+
 # Objetivos
  - Ofrecer la posibilidad de crear votaciones / votar de forma privada y segura.
  - Ofrecer al público general la documentación necesaria para la creación e implementación del servicio con el menor costo posible.
@@ -23,8 +25,12 @@ Enlace: https://gitlab.com/adesq/voto
 El proyecto tiene como objetivo ofrecer una plataforma de voto escalable, segura y fácil de implementar. Se puede dividir en tres bloques principales:
  - **Página web:** Interfaz básica que permite a los usuarios tanto votar como crear sus propias votaciones, ya sean públicas o privadas.
  - **Base de datos:** Será la que almacene todos los datos. Se considera importante aplicar una buena seguridad a este apartado.
- - **Sistema de copias de seguridad:** Permite tener redundancia en los datos almacenados. Es un añadiddo a la seguridad general de la plataforma.
+ - **Sistema de copias de seguridad:** Permite tener redundancia en los datos almacenados. Es un añadido a la seguridad general de la plataforma.
 
 
 # Despliegue de la plataforma
-##
+## Uso del docker-compose
+
+## Importación de la base de datos
+
+## Implementación de las copias de seguridad
