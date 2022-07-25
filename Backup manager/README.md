@@ -2,7 +2,7 @@
 Debido a la singularidad del proyecto, se ha creado un script capaz de copiar y enviar directorios mediante SCP.
 Se recomienda programar su ejecución mediante [Crontab.](https://www.redeszone.net/tutoriales/servidores/cron-crontab-linux-programar-tareas/)
 
-# Ficheros en el directorio
+## Ficheros en el directorio
 El script está formado por un fichero .py y un directorio. Se describen a continuación:
  - Directorio **config**: Es el directorio donde se guardan todas las configuraciones del script.
  - Fichero **script.py**: Ejecutable principal. Es el fichero que se debe ejecutar cada vez que se quiera hacer una copia de seguridad.
