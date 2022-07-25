@@ -1,0 +1,15 @@
+# Datos del servidor de backups:
+# Usuario:
+username
+
+# IP del servidor:
+xxx.xxx.xxx.xxx
+
+# Ruta de origen (carpeta raíz):
+/home/username
+
+# Ruta de destino local (carpeta raíz)
+/temp
+
+# Ruta de destino remoto(carpeta raíz):
+/home/username/

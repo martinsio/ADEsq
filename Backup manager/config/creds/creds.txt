@@ -1,0 +1,8 @@
+# Usuario:
+exampleuser@adesq.com
+
+# Contraseña
+examplepass
+
+# Servidor y puerto
+smtp.gmail.com: 587
