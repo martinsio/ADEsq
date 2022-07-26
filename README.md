@@ -1,4 +1,4 @@
-# ADESQ - Sistema de voto seguro
+# ADESQ - Plataforma de voto
  Sistema para votaciones abiertas con infraestructura basada en docker y cloud.
  
 ![](https://i.ibb.co/CnghcXY/Imagen1.png)
