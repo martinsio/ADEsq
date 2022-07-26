@@ -50,4 +50,4 @@ Sabiendo que por defecto la base de datos creada por la ejecución del fichero *
 *docker exec -i mariadb mysql -root --password=**password_usuario** basededatos  < estructura-voto.sql*
 
 ## 3. Implementación de las copias de seguridad
-Se deben seguir las instrucciones dadas en el fichero **/Backup manager/README.md**.
+Se deben seguir las instrucciones dadas en el fichero [**/Backup manager/README.md**](https://github.com/martinsio/ADEsq/tree/master/Backup%20manager "**/Backup manager/README.md**").
