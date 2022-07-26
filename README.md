@@ -47,7 +47,8 @@ En el fichero **/Base de datos/estructura-voto.sql** podemos encontrar la estruc
 ![](https://i.ibb.co/chbQ6Gr/Imagen2.png)
 
 Sabiendo que por defecto la base de datos creada por la ejecución del fichero **docker-compose.yml** tiene el nombre **basededatos**, podemos importar la configuración mediante el comando:
-*docker exec -i mariadb mysql -root --password=**password_usuario** basededatos  < estructura-voto.sql*
+
+`$ docker exec -i mariadb mysql -root --password=**password_usuario** basededatos  < estructura-voto.sql`
 
 ## 3. Implementación de las copias de seguridad
 Se deben seguir las instrucciones dadas en el fichero [**/Backup manager/README.md**](https://github.com/martinsio/ADEsq/tree/master/Backup%20manager "**/Backup manager/README.md**").
