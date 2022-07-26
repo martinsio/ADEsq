@@ -29,7 +29,7 @@ El proyecto tiene como objetivo ofrecer una plataforma de voto escalable, segura
 
 
 # Despliegue de la plataforma
-## Uso del docker-compose
+## 1. Uso del docker-compose
 Para que el despliegue sea exitoso, en primer lugar se debe instalar Docker. Para ello, dentro del directorio **/Docker files** se puede encontrar el fichero install-docker.sh. Tras su ejecución, Docker estará listo.
 
 A continuación se deben desplegar los servicios haciendo uso del fichero **/Docker files/docker-swarm/docker-compose.yml**. Estando en el directorio del fichero lanzaremos los siguientes comandos:
@@ -41,12 +41,13 @@ Tras su correcta implementación, tendremos funcionando los servicios:
 - **Varnish**, puerto 80
 - **MariaDB**, puerto 10200
 
-## Importación de la base de datos
+## 2. Importación de la base de datos
 En el fichero **/Base de datos/estructura-voto.sql** podemos encontrar la estructura de la base de datos que requiere la página web.
+
 ![](https://i.ibb.co/chbQ6Gr/Imagen2.png)
 
 Sabiendo que por defecto la base de datos creada por la ejecución del fichero **docker-compose.yml** tiene el nombre **basededatos**, podemos importar la configuración mediante el comando:
 *docker exec -i mariadb mysql -root --password=**password_usuario** basededatos  < estructura-voto.sql*
 
-## Implementación de las copias de seguridad
+## 3. Implementación de las copias de seguridad
 Se deben seguir las instrucciones dadas en el fichero **/Backup manager/README.md**.
